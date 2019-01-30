@@ -6,24 +6,30 @@
         xmlns:local="clr-namespace:control_scrollviewer"
         mc:Ignorable="d"
         Title="MainWindow" Height="200" Width="300">
-    <ScrollViewer CanContentScroll="true">
-        <StackPanel>
-            <Button Content="Button1" />
-            <Button Content="Button2" />
-            <Button Content="Button3" />
-            <Button Content="Button4" />
-            <Button Content="Button5" />
-            <Button Content="Button6" />
-            <Button Content="Button7" />
-            <Button Content="Button8" />
-            <Button Content="Button9" />
-            <Button Content="Button10" />
-            <Button Content="Button11" />
-            <Button Content="Button12" />
-            <Button Content="Button13" />
-            <Button Content="Button14" />
-            <Button Content="Button15" />
-        </StackPanel>
-    </ScrollViewer>
+    <DockPanel>
+        <Button DockPanel.Dock="Top"
+                Margin="5"
+                Content="ScrollToHalfVerticalOffset" 
+                Click="ScrollToHalfVerticalOffsetButton_Click" />
+        <ScrollViewer x:Name="scrollViewer" CanContentScroll="true">
+            <StackPanel>
+                <Button Content="Button1" />
+                <Button Content="Button2" />
+                <Button Content="Button3" />
+                <Button Content="Button4" />
+                <Button Content="Button5" />
+                <Button Content="Button6" />
+                <Button Content="Button7" />
+                <Button Content="Button8" />
+                <Button Content="Button9" />
+                <Button Content="Button10" />
+                <Button Content="Button11" />
+                <Button Content="Button12" />
+                <Button Content="Button13" />
+                <Button Content="Button14" />
+                <Button Content="Button15" />
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Window>
 

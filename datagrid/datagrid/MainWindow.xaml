@@ -1,0 +1,26 @@
+﻿<Window x:Class="datagrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:datagrid"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="500">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <DataGrid x:Name="dataGrid1" 
+                  ItemsSource="{Binding myList}"
+                  IsSynchronizedWithCurrentItem="True"
+                  IsReadOnly="True"
+                  >
+            <DataGrid.InputBindings>
+                <!--"/"の意味(https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/data/binding-declarations-overview)-->
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding DoubleClickCommand}"
+                              CommandParameter="{Binding myList/}"/>
+            </DataGrid.InputBindings>
+        </DataGrid>
+    </Grid>
+</Window>

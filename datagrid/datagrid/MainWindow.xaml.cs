@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace control_scrollviewer
+namespace datagrid
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
@@ -23,12 +23,6 @@ namespace control_scrollviewer
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void ScrollToHalfVerticalOffsetButton_Click(object sender, RoutedEventArgs e)
-        {
-            // 垂直スクロールバーの位置を真ん中に設定
-            this.scrollViewer.ScrollToVerticalOffset(this.scrollViewer.ScrollableHeight / 2);
         }
     }
 }
