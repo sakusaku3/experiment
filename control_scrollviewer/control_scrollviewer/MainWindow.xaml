@@ -11,7 +11,9 @@
                 Margin="5"
                 Content="ScrollToHalfVerticalOffset" 
                 Click="ScrollToHalfVerticalOffsetButton_Click" />
-        <ScrollViewer x:Name="scrollViewer" CanContentScroll="true">
+        <ScrollViewer 
+            x:Name="scrollViewer" 
+            >
             <StackPanel>
                 <Button Content="Button1" />
                 <Button Content="Button2" />
