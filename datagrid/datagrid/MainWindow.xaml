@@ -14,12 +14,17 @@
                   ItemsSource="{Binding myList}"
                   IsSynchronizedWithCurrentItem="True"
                   IsReadOnly="True"
+                  PreviewMouseLeftButtonDown="dataGrid1_PreviewMouseLeftButtonDown"
+                  PreviewMouseMove="dataGrid1_PreviewMouseMove"
                   >
             <DataGrid.InputBindings>
                 <!--"/"の意味(https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/data/binding-declarations-overview)-->
                 <MouseBinding MouseAction="LeftDoubleClick"
                               Command="{Binding DoubleClickCommand}"
                               CommandParameter="{Binding myList/}"/>
+
+                <KeyBinding Gesture="ctrl + c" Command="{Binding CopyCommand}"/>
+                <KeyBinding Gesture="ctrl + v" Command="{Binding PasteCommand}"/>
             </DataGrid.InputBindings>
         </DataGrid>
     </Grid>

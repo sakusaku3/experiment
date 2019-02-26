@@ -15,7 +15,9 @@ namespace datagrid
         // コンストラクタ
         public ViewModel()
         {
-            DoubleClickCommand = new v.DelegateCommand(this.MyDoubleClickCommand, x => true);
+            this.DoubleClickCommand = new v.DelegateCommand(this.MyDoubleClickCommand, x => true);
+            this.CopyCommand = new v.DelegateCommand(this.CopyExecute, () => true);
+            this.PasteCommand = new v.DelegateCommand(this.PasteExecute, () => true);
                 
             //
             myList = new ObservableCollection<TestItem>();
@@ -27,6 +29,8 @@ namespace datagrid
         public ObservableCollection<TestItem> myList { get; set; }
 
         public ICommand DoubleClickCommand { get; private set; }
+        public ICommand CopyCommand { get; private set; }
+        public ICommand PasteCommand { get; private set; }
 
         public void MyDoubleClickCommand(object param)
         {
@@ -36,6 +40,16 @@ namespace datagrid
             }
             var clc = (TestItem)param;
             MessageBox.Show("Double click on " + clc.Name);
+        }
+
+        public void CopyExecute()
+        {
+            MessageBox.Show("Copy");
+        }
+
+        public void PasteExecute()
+        {
+            MessageBox.Show("Paste");
         }
     }
 }

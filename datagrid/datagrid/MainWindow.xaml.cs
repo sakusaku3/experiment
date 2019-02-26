@@ -24,5 +24,30 @@ namespace datagrid
         {
             InitializeComponent();
         }
+
+        private DataGridRow draggedItem;
+        private bool isDragging;
+
+        private void dataGrid1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var l_row = UIHelpers.TryFindFromPoint<DataGridRow>((UIElement)sender, e.GetPosition(dataGrid1));
+            if (l_row == null || l_row.IsEditing) return;
+
+            this.isDragging = true;
+            this.draggedItem = l_row;
+            Console.WriteLine("dragging");
+        }
+
+        private void dataGrid1_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+			if (e.LeftButton != MouseButtonState.Pressed || !this.isDragging) return;
+
+			// ドラッグ操作を開始する
+			DragDrop.DoDragDrop(this.draggedItem, this.draggedItem.DataContext, DragDropEffects.All);
+
+			this.isDragging = false;
+			e.Handled = true;
+            Console.WriteLine("moving");
+        }
     }
 }
