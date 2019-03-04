@@ -14,18 +14,31 @@
                   ItemsSource="{Binding myList}"
                   IsSynchronizedWithCurrentItem="True"
                   IsReadOnly="True"
-                  PreviewMouseLeftButtonDown="dataGrid1_PreviewMouseLeftButtonDown"
-                  PreviewMouseMove="dataGrid1_PreviewMouseMove"
+                  AutoGenerateColumns="False"
                   >
             <DataGrid.InputBindings>
-                <!--"/"の意味(https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/data/binding-declarations-overview)-->
+                <!--"/"の意味(https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/data/binding-declarations-overview)--><!--
                 <MouseBinding MouseAction="LeftDoubleClick"
                               Command="{Binding DoubleClickCommand}"
-                              CommandParameter="{Binding myList/}"/>
+                              CommandParameter="{Binding myList/}"/>-->
 
                 <KeyBinding Gesture="ctrl + c" Command="{Binding CopyCommand}"/>
                 <KeyBinding Gesture="ctrl + v" Command="{Binding PasteCommand}"/>
             </DataGrid.InputBindings>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                <DataGridHyperlinkColumn Header="Uri" Binding="{Binding Link}" ContentBinding="{Binding Id}">
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="Hyperlink_Click"/>
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

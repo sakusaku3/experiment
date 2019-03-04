@@ -21,7 +21,7 @@ namespace datagrid
                 
             //
             myList = new ObservableCollection<TestItem>();
-            myList.Add( new TestItem { Id = 1, Name = "7of9", Age = 30, Gender = "Female"});
+            myList.Add( new TestItem { Id = 1, Name = "7of9", Age = 30, Gender = "Female" });
             myList.Add( new TestItem { Id = 2, Name = "Janeway", Age = 50, Gender = "Female" });
             myList.Add( new TestItem { Id = 3, Name = "Chakotay", Age = 40, Gender = "Female" });
         }
