@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Person.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="UIHelpers.cs" />
     <Compile Include="ViewModel.cs" />

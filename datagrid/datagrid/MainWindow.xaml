@@ -10,7 +10,32 @@
         <local:ViewModel/>
     </Window.DataContext>
     <Grid>
-        <DataGrid x:Name="dataGrid1" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="AAA" Command="{Binding AddCommand}"/>
+            <Button Content="BBB" Command="{Binding ReplaceCommand}"/>
+        </StackPanel>
+
+        <ComboBox 
+            Grid.Row="1"
+            x:Name="comboBox" ItemsSource="{Binding Persons}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="2.5"/>
+                        <TextBlock Text="{Binding Age}" Margin="2.5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <DataGrid Grid.Row="2"
+                  x:Name="dataGrid1" 
                   ItemsSource="{Binding myList}"
                   IsSynchronizedWithCurrentItem="True"
                   IsReadOnly="True"
@@ -38,6 +63,22 @@
                         </Style>
                     </DataGridHyperlinkColumn.ElementStyle>
                 </DataGridHyperlinkColumn>
+                <DataGridTemplateColumn Header="Gender">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Persons}" SelectedValue="{Binding Person}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" Margin="2.5"/>
+                                            <TextBlock Text="{Binding Age}" Margin="2.5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
