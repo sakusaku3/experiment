@@ -1,0 +1,18 @@
+﻿@* ifコード・ブロック *@
+@if (@Model.IsAge) {
+	<text>
+foreach文のループで処理される個別項目の値は「@Model.Name」です。
+foreach文のループで処理される個別項目の値は「@Model.Name」です。
+foreach文のループで処理される個別項目の値は「@Model.Name」です。
+foreach文のループで処理される個別項目の値は「@Model.Name」です。
+	</text>
+} else {
+@:foreach文のループで処理される個別項目の値は「@Model.Name」です。
+}
+
+foreach文のループで処理される個別項目の値は「@Model.Age」です。
+
+@{int[] items = {1,2,3};}
+@foreach (var item in items) {
+<p>foreach文のループで処理される個別項目の値は「@item」です。</p>
+}
