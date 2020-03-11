@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:datagrid_filter"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel>
@@ -23,5 +27,8 @@
                 <DataGridTextColumn Header="給料" Binding="{Binding Salary}" />
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="dataGrid2" Grid.Row="2"
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Rows}"/>
     </Grid>
 </Window>

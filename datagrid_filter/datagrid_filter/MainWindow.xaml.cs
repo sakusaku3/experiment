@@ -31,6 +31,23 @@ namespace datagrid_filter
         public MainWindow()
         {
             this.InitializeComponent();
+            this.InitializeDataGrid();
+        }
+
+        private void InitializeDataGrid()
+        {
+            var vm = (MainViewModel)DataContext;
+
+            foreach (var header in vm.Headers)
+            {
+                this.dataGrid2.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = header,
+                    IsReadOnly = true,
+                    CanUserSort = true,
+                    Binding = new Binding($"Cells[{header}].Value"),
+                });
+            }
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
