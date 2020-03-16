@@ -110,5 +110,10 @@ namespace datagrid_filter
             this.predicate = p => true;
             this.viewSource.View.Refresh();
         }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            this.people.Add(new Person() { Name = "ADD!!", Salary = 22 });
+        }
     }
 }

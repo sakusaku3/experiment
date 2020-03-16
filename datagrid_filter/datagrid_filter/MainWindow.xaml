@@ -14,12 +14,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel>
             <Button Content="生成" Click="GenerateButton_Click" />
             <Button Content="シャッフル" Click="ShuffleButton_Click" />
             <Button Content="フィルター" Click="Filter_Click" />
             <Button Content="Nonフィルター" Click="NonFilter_Click" />
+            <Button Content="ADD" Click="Add_Click" />
         </StackPanel>
         <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="False" >
             <DataGrid.Columns>
@@ -30,5 +32,6 @@
         <DataGrid x:Name="dataGrid2" Grid.Row="2"
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding Rows}"/>
+        <local:VariableDataGrid DataContext="{Binding VariableDataGrid}" Grid.Row="3"/>
     </Grid>
 </Window>

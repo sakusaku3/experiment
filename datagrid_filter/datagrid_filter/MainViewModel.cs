@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace datagrid_filter
 {
-    public class MainViewModel : BindableBase
+    class MainViewModel : BindableBase
     {
         public string[] Headers { get; }
 
         public ObservableCollection<Row> Rows { get; }
+
+        public VariableDataGridViewModel VariableDataGrid { get; }
 
         public MainViewModel()
         {
@@ -43,6 +45,7 @@ namespace datagrid_filter
 
             this.Headers = new string[] { "AAA", "BBB", "CCC" };
 
+            this.VariableDataGrid = new VariableDataGridViewModel(this.Headers, this.Rows);
         }
     }
 }
