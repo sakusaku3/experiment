@@ -9,53 +9,15 @@ namespace docks
 {
     public class DockViewModel : ViewModelBase
     {
-        private DelegateCommand _showMessageCommand;
-        public DelegateCommand ShowMessageCommand
-        {
-            get
-            {
-                return this._showMessageCommand ?? 
-                    (this._showMessageCommand = new DelegateCommand(
-                        () => this.showMessage.ShowMessage("pushed"), () => true));
-            }
-        }
+		public viewmodel.Tabs.IssueViewModel IssueViewModel { get; set; }
+		public viewmodel.Tabs.MatrixViewModel MatrixViewModel { get; set; }
 
-        private DelegateCommand _replaceIssue;
-        public DelegateCommand ReplaceIssue
-        {
-            get
-            {
-                return this._replaceIssue ?? 
-                    (this._replaceIssue = new DelegateCommand(
-                        this.replaceExecute, () => true));
-            }
-        }
-
-        private readonly IShowMessageService showMessage;
-
-        private readonly IExcelControlService excelControl;
-
-        private readonly ReplaceControl replaceControl;
-
-        public DockViewModel(
+		public DockViewModel(
 			IShowMessageService showMessage,
 			IExcelControlService excelControl)
         {
-            this.showMessage = showMessage;
-			this.excelControl = excelControl;
-			this.replaceControl = new ReplaceControl(excelControl);
+			this.IssueViewModel = new viewmodel.Tabs.IssueViewModel(showMessage, excelControl);
+			this.MatrixViewModel = new viewmodel.Tabs.MatrixViewModel(excelControl);
         }
-
-		private void replaceExecute()
-		{
-			try
-			{
-				this.replaceControl.Replace(this.excelControl.GetCurrentSheetName());
-			}
-			catch
-			{
-
-			}
-		}
     }
 }

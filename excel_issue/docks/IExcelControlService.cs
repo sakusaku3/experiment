@@ -18,5 +18,8 @@ namespace docks
 
 		void SetTable(object[,] table, string sheetName);
 		void SetTable(object[,] table, string sheetName, int startRow, int startColumn);
+
+		IList<model.table.Cell> GetSelectedRange();
+		void SetTable(IList<model.table.Cell> cells);
 	}
 }

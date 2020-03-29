@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -48,8 +49,21 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\table\Cell.cs" />
+    <Compile Include="model\table\CombinationCreator.cs" />
+    <Compile Include="model\table\Row.cs" />
+    <Compile Include="model\table\Table.cs" />
     <Compile Include="ReplaceControl.cs" />
+    <Compile Include="view\MatrixControl.xaml.cs">
+      <DependentUpon>MatrixControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="viewmodel\Tabs\IssueViewModel.cs" />
+    <Compile Include="viewmodel\Tabs\MatrixViewModel.cs" />
     <Page Include="Dock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\MatrixControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,5 +107,6 @@
       <Name>view_base</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

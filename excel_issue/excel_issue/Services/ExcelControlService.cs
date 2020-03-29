@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using e = Microsoft.Office.Interop.Excel;
 
 namespace excel_issue.Services
@@ -129,6 +130,76 @@ namespace excel_issue.Services
 				if (s.Name == sheetName) return true;
 			}
 			return false;
+		}
+
+		public IList<docks.model.table.Cell> GetSelectedRange()
+		{
+			var cells = new List<docks.model.table.Cell>();
+			if (this.app.Selection is e.Range r)
+			{
+				var startRow = r.Row;
+				var startColumn = r.Column;
+				var rowCount = r.Rows.Count;
+				var columnCount = r.Columns.Count;
+
+				if (rowCount == 1 && columnCount == 1)
+				{
+					var value = r.Value;
+					cells.Add(new docks.model.table.Cell(
+						value == null ? string.Empty : value.ToString(),
+						startRow, startColumn)
+					{ BackgroundColor = Color.FromArgb((int)r.Interior.Color) });
+					return cells;
+				}
+
+				var range = r.Value as object[,];
+				var points = Enumerable.Range(startRow, rowCount)
+					.SelectMany(_ => Enumerable.Range(startColumn, columnCount),
+					(row, column) => (row, column));
+
+				foreach((int row, int column) in points)
+				{
+					var c = r.Cells[row - startRow + 1, column - startColumn + 1] as e.Range;
+					var v = c.Value;
+					cells.Add(new docks.model.table.Cell(
+						v == null ? string.Empty : v.ToString(), row, column)
+					{ BackgroundColor = Color.FromArgb((int)c.Interior.Color) });
+				}
+
+				return cells;
+			}
+			else
+			{
+				return cells;
+			}
+		}
+
+		public void SetTable(IList<docks.model.table.Cell> cells)
+		{
+			var sheet = this.GetCurrentBook().ActiveSheet as e.Worksheet;
+			foreach (var c in cells)
+			{
+				var range = sheet.Cells[c.Row, c.Column] as e.Range;
+				range.Value = c.Value;
+				range.Interior.Color = c.BackgroundColor.ToArgb();
+			}
+		}
+
+		public void SetTable2(IList<docks.model.table.Cell> cells)
+		{
+			var startRow = cells.Min(x => x.Row);
+			var startColumn = cells.Min(x => x.Column);
+			var endRow = cells.Max(x => x.Row);
+			var endColumn = cells.Max(x => x.Column);
+
+			var table = new object[endRow - startRow + 1, endColumn - startColumn + 1];
+			foreach (var c in cells)
+			{
+				table[c.Row - startRow, c.Column - startColumn] = c.Value;
+			}
+
+			var sheet = this.GetCurrentBook().ActiveSheet as e.Worksheet;
+			this.SetTableCore(table, sheet, startRow, startColumn, endRow, endColumn);
 		}
 	}
 }

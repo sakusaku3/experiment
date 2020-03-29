@@ -19,7 +19,7 @@ namespace view_base.ViewModel
             ref T field, T value, 
             [CallerMemberName]string propertyName = null)
         {
-            if (Equals(field, value)) { return false; }
+            if (object.Equals(field, value)) { return false; }
             field = value;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); return true;
         }

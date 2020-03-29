@@ -4,12 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:docks"
+             xmlns:view="clr-namespace:docks.view"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Button Margin="2" FontFamily="Meiryo"
+
+    <TabControl>
+
+        <TabItem Header="Test" DataContext="{Binding IssueViewModel}">
+            <StackPanel>
+                <Button Margin="2" FontFamily="Meiryo"
                 Content="Replace" Command="{Binding ShowMessageCommand}" />
-        <Button Margin="2" FontFamily="Meiryo"
+                <Button Margin="2" FontFamily="Meiryo"
                 Content="Shape" Command="{Binding ReplaceIssue}" />
-    </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Test">
+            <view:MatrixControl DataContext="{Binding MatrixViewModel}"/>
+        </TabItem>
+
+    </TabControl>
+
 </UserControl>

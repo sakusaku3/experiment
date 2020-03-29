@@ -27,6 +27,7 @@ namespace docks
 		}
 
 		private static readonly int idColumn = 1;
+
 		private static readonly int contentsColumn = 2;
 
 		private static readonly string issuesSheet = "issues";
